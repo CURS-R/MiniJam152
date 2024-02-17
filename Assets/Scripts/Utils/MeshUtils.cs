@@ -6,12 +6,12 @@ namespace Utils
 {
     public static class MeshUtils
     {
-	    private static Mesh _unityCapsuleMesh = null;
-	    private static Mesh _unityCubeMesh = null;
-	    private static Mesh _unityCylinderMesh = null;
-	    private static Mesh _unityPlaneMesh = null;
-	    private static Mesh _unitySphereMesh = null;
-	    private static Mesh _unityQuadMesh = null;
+	    private static Mesh _unityCapsuleMesh;
+	    private static Mesh _unityCubeMesh;
+	    private static Mesh _unityCylinderMesh;
+	    private static Mesh _unityPlaneMesh;
+	    private static Mesh _unitySphereMesh;
+	    private static Mesh _unityQuadMesh;
 	    
         public static Mesh GetUnityPrimitiveMesh(PrimitiveType primitiveType)
         {
@@ -31,15 +31,8 @@ namespace Utils
 		{
 			if (primMesh == null)
 			{
-				Debug.Log("Getting Unity Primitive Mesh: " + primitiveType);
 				primMesh = Resources.GetBuiltinResource<Mesh>(GetPrimitiveMeshPath(primitiveType));
-
-				if (primMesh == null)
-				{
-					Debug.LogError("Couldn't load Unity Primitive Mesh: " + primitiveType);
-				}
 			}
-
 			return primMesh;
 		}
 

@@ -2,44 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Utils;
 
 public class Spawner : MonoBehaviour
 {
-    [field: SerializeField] public GameObject ObjectToSpawn { get; private set; }
     [field: SerializeField] public List<Transform> SpawnPositions { get; private set; }
-    [field: SerializeField] private float spawnRadius { get; set; } = 3;
+    [field: SerializeField] private float spawnRadius = 3;
     public float SpawnRadius => Mathf.Abs(spawnRadius);
-    [field: SerializeField] private bool isSphere { get; set; } = false;
-    [field: SerializeField] private bool onOutside { get; set; } = false;
-    [field: SerializeField] private bool randomRotation { get; set; } = false;
+    [field: SerializeField] private bool isSphere;
+    [field: SerializeField] private bool onOutside;
+    [field: SerializeField] private bool randomRotation;
     [field: Header("Debug")]
-    [field: SerializeField] private Color debugColor { get; set; }
-    public Color DebugColor => new(debugColor.r, debugColor.g, debugColor.b, 1);
+    [field: SerializeField] private Color debugColor;
+    public Color DebugColor => new(debugColor.r, debugColor.g, debugColor.b, Mathf.Clamp(debugColor.a, 0.1f,1f));
 
-    private void Start()
+    public List<GameObject> Spawn(GameObject prefab, uint amount)
     {
-        SpawnObjects(15); // TODO: call this in a manager (or something else)
+        List<GameObject> objectsSpawned = new();
+        for (int i = 0; i < amount; i++)
+            objectsSpawned.Add(Spawn(prefab));
+        return objectsSpawned;
+    }
+    public GameObject Spawn(GameObject prefab)
+    {
+        var pos = GetRandomPosition();
+        Quaternion rot = randomRotation ? Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)) : Quaternion.identity;
+        return Instantiate(prefab, pos, rot);
     }
 
-    public void SpawnObjects(int amount)
+    public Vector3 GetRandomPosition()
     {
-        for (int i = 0; i < amount; i++)
+        var randomT = SpawnPositions[Random.Range(0, SpawnPositions.Count)];
+        Vector3 pos;
+        if (isSphere)
         {
-            var randomT = SpawnPositions[Random.Range(0, SpawnPositions.Count)];
-            Vector3 pos;
-            if (isSphere)
-            {
-                pos = (onOutside ? Random.onUnitSphere : Random.insideUnitSphere) * SpawnRadius + randomT.position;
-            }
-            else
-            {
-                var circle = (onOutside ? Random.insideUnitCircle.normalized : Random.insideUnitCircle) * SpawnRadius;
-                pos = new Vector3(circle.x, 0, circle.y) + randomT.position;
-            }
-            Quaternion rot = randomRotation ? Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)) : Quaternion.identity;
-            Instantiate(ObjectToSpawn, pos, rot);
+            pos = (onOutside ? Random.onUnitSphere : Random.insideUnitSphere) * SpawnRadius + randomT.position;
         }
+        else
+        {
+            var circle = (onOutside ? Random.insideUnitCircle.normalized : Random.insideUnitCircle) * SpawnRadius;
+            pos = new Vector3(circle.x, 0, circle.y) + randomT.position;
+        }
+        return pos;
     }
     
     private void OnDrawGizmos()
