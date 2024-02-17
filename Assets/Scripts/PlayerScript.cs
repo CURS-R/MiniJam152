@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    [Header("Player Variables")]
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
@@ -17,18 +18,20 @@ public class PlayerScript : MonoBehaviour
     public float DashDuration = 1f;
     public float DashCoolDown = 1f;
 
-
-    CharacterController characterController;
-    Vector3 moveDirection = Vector3.zero;
-
-    float rotationX = 0;
-    /// <summary>
-    /// projectile variables
-    /// </summary>
+    [Header("Projectile Variables")]
     private Vector3 destination;
     public GameObject Projectile;
     public Transform FPSFirePoint;
     public float ProjectileSpeed = 30.0f;
+
+    CharacterController characterController;
+    Vector3 moveDirection = Vector3.zero;
+
+    public ParticleSystem SprayParticle;
+
+    float rotationX = 0;
+
+
     [HideInInspector]
     public bool canMove = true;
     public bool canRun = true;
@@ -39,6 +42,7 @@ public class PlayerScript : MonoBehaviour
         //lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
+        SprayParticle.Stop();
     }
 
     // Update is called once per frame
@@ -111,6 +115,7 @@ public class PlayerScript : MonoBehaviour
     {
         var projectileObj = Instantiate(Projectile, firePoint.position, firePoint.rotation) as GameObject;
         projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * ProjectileSpeed;
+        SprayParticle.Play();
     }
 }
 

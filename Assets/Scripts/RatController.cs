@@ -21,6 +21,7 @@ public class RatController : MonoBehaviour
         if (other.CompareTag("Spray"))
         {
             Destroy(gameObject);
+            Debug.Log("Rathit");
         }
     }
 }

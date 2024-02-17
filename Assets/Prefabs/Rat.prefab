@@ -1223,6 +1223,7 @@ GameObject:
   - component: {fileID: 6670573460701980477}
   - component: {fileID: 4916159330210442766}
   - component: {fileID: 7037018833188500383}
+  - component: {fileID: 5587293374639339800}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Untagged
@@ -1353,6 +1354,18 @@ CapsuleCollider:
   m_Height: 0.07071914
   m_Direction: 1
   m_Center: {x: -0.0000024622914, y: 0.013331476, z: 0.010531568}
+--- !u!114 &5587293374639339800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8267039931500999977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df35a757029159478c11b97b6c473e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8473657591680730745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,7 +1555,7 @@ Transform:
   m_GameObject: {fileID: 8728613613596384298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.35989043, z: -0, w: 0.93299454}
-  m_LocalPosition: {x: -3.01, y: 0.25, z: -3.44}
+  m_LocalPosition: {x: -3.01, y: 0.33, z: -3.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
