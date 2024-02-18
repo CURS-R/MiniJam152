@@ -7,6 +7,7 @@ using UnityEngine;
 public class RatController : MonoBehaviour
 {
     [field: SerializeField] private Transform carryItemTransform;
+    [field: SerializeField] private GameObject thingToDestroyWhenDead;
 
     [HideInInspector] public bool HasItem
     {
@@ -33,8 +34,8 @@ public class RatController : MonoBehaviour
         {
             Debug.Log("Rathit");
             TryDropItem();
-            Destroy(gameObject, 10);
-            gameObject.SetActive(false);
+            Destroy(thingToDestroyWhenDead, 0.5f);
+            //gameObject.SetActive(false);
         }
 
         if (item != null && !HasItem)

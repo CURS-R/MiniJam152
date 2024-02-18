@@ -21,7 +21,15 @@ public class TestManager : MonoBehaviour
     public float minimumDelay = 0.5f;
 
     private readonly List<GameObject> cheeseGOs = new();
-    private List<Cheese> cheeses => cheeseGOs.Select(go => go.GetComponent<Cheese>()).ToList();
+    private List<Cheese> cheeses
+    {
+        get
+        {
+            cheeseGOs.RemoveAll(item => item == null);
+            return cheeseGOs.Select(go => go.GetComponent<Cheese>()).ToList();
+        }
+    }
+
     private readonly List<GameObject> ratGOs = new();
     private List<Rat> rats => ratGOs.Select(go => go.GetComponent<Rat>()).ToList();
     
@@ -54,7 +62,7 @@ public class TestManager : MonoBehaviour
         while (true) // TODO: use a boolean from something (if we lose or win stop spawning rats?)
         {
             var newRatGO = RatSpawner.Spawn(RatPrefab);
-            newRatGO.name = $"Spawned Rat {spawnedRatCount++}";
+            newRatGO.name = $"Rat {spawnedRatCount++}";
             ratGOs.Add(newRatGO);
             var newRat = newRatGO.GetComponent<Rat>();
             GoToCheese(newRat);
