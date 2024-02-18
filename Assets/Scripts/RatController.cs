@@ -7,7 +7,7 @@ using UnityEngine;
 public class RatController : MonoBehaviour
 {
     [field: SerializeField] private Transform carryItemTransform;
-    
+
     [HideInInspector] public bool HasItem
     {
         get
@@ -40,7 +40,8 @@ public class RatController : MonoBehaviour
         if (item != null && !HasItem)
         {
             Debug.Log($"{gameObject.name} collided with Item");
-            TryPickUpItem(item);
+            if (!item.IsPickedUp)
+                TryPickUpItem(item);
         }
     }
 

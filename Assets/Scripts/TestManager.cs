@@ -72,8 +72,12 @@ public class TestManager : MonoBehaviour
     private void GoToCheese(Rat rat)
     {
         var validCheeses = cheeses.Where(c => !c.IsPickedUp).ToList();
-        var randomValidCheesePos = validCheeses[Random.Range(0, validCheeses.Count)].transform.position;
-        rat.Movement.SetTarget(randomValidCheesePos);
+        Vector3 targetPos;
+        if (validCheeses.Count > 0)
+            targetPos = validCheeses[Random.Range(0, validCheeses.Count)].transform.position;
+        else
+            targetPos = RatSpawner.GetRandomPosition();
+        rat.Movement.SetTarget(targetPos);
         Debug.Log($"{rat.name} go to cheese!");
     }
 }
