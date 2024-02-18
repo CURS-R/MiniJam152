@@ -35,6 +35,7 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;
     public bool canRun = true;
+    public bool MeleeWeapon = false;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -90,7 +91,14 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            if (MeleeWeapon == true)
+            {
+                MeleeWeaponUse();
+            }
+            else
+            {
             ShootProjectile();
+            }
         }
     }
 
@@ -108,6 +116,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         InstantiateProjectile(FPSFirePoint);
+
+    }
+
+    public void MeleeWeaponUse()
+    {
 
     }
 
