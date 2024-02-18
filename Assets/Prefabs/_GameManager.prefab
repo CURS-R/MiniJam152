@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7216677906134071662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5819276531816591865}
+  - component: {fileID: 5915434115062634585}
+  m_Layer: 0
+  m_Name: _GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5819276531816591865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216677906134071662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5915434115062634585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216677906134071662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c30191b813e3a44b5144768d4c74c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AmountOfCheeseToSpawn>k__BackingField: 15
+  <CheeseSpawner>k__BackingField: {fileID: 0}
+  <RatSpawner>k__BackingField: {fileID: 0}
+  cheesePrefab: {fileID: 2413230880587739206, guid: 66fe52829fa3fd649a9ea351211e1e78, type: 3}
+  ratPrefab: {fileID: 8003166296622746416, guid: e1d39ded27542834aad8272bfa6158d8, type: 3}
+  initialDelay: 2
+  delayDecreaseIncrementPercentage: 0.95
+  minimumDelay: 0.5

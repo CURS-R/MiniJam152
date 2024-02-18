@@ -61,13 +61,9 @@ public class PlayerScript : MonoBehaviour
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
             moveDirection.y = jumpSpeed;
-        }
         else
-        {
             moveDirection.y = movementDirectionY;
-        }
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
@@ -90,21 +86,16 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Fire1"))
-        {
             ShootProjectile();
-        }
 
         if (Input.GetButtonDown("Fire2"))
-        {
             MeleeWeaponUse();
-        }
     }
 
     private void ShootProjectile()
     {
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        var ray = playerCamera.ViewportPointToRay(new(0.5f, 0.5f, 0));
+        if (Physics.Raycast(ray, out var hit))
         {
             destination = hit.point;
         }
@@ -125,9 +116,21 @@ public class PlayerScript : MonoBehaviour
             ToothPickAnimation.SetBool("IsPoking", false);
             weaponUseCoroutine = null;
         }
-        ToothPickAnimation.SetBool("IsPoking", true);
-        weaponUseCoroutine = StartCoroutine(SetAnimtoFalse());
+        
+        weaponUseCoroutine = StartCoroutine(MeleeWeaponAnimCoroutine());
 
+        DoMeleeRaycast();
+    }
+    IEnumerator MeleeWeaponAnimCoroutine()
+    {
+        ToothPickAnimation.SetBool("IsPoking", true);
+        yield return new WaitForSeconds(.3f);
+        ToothPickAnimation.SetBool("IsPoking", false);
+        weaponUseCoroutine = null;
+    }
+
+    private void DoMeleeRaycast()
+    {
         var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         if (Physics.Raycast(ray, out var hit, 4f))
         {
@@ -138,18 +141,13 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
-    IEnumerator SetAnimtoFalse()
-    {
-        yield return new WaitForSeconds(.3f);
-        ToothPickAnimation.SetBool("IsPoking", false);
-        weaponUseCoroutine = null;
-    }
 
-    void InstantiateProjectile(Transform firePoint)
+    private void InstantiateProjectile(Transform firePoint)
     {
-        var projectileObj = Instantiate(Projectile, firePoint.position, firePoint.rotation) as GameObject;
-        projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * ProjectileSpeed;
-        SprayParticle.Play();
+        var projectileObj = Instantiate(Projectile, firePoint.position, firePoint.rotation);
+        var projectile = projectileObj.GetComponent<Projectile>();
+        projectile.Rigidbody.velocity = (destination - firePoint.position).normalized * ProjectileSpeed;
+        //SprayParticle.Play(); // TODO: spray?
     }
 }
 

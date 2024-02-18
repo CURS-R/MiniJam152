@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class TestManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [field: SerializeField] public uint AmountOfCheeseToSpawn { get; set; }
     [field: SerializeField] public Spawner CheeseSpawner { get; private set; }
@@ -31,8 +31,15 @@ public class TestManager : MonoBehaviour
     }
 
     private readonly List<GameObject> ratGOs = new();
-    private List<Rat> rats => ratGOs.Select(go => go.GetComponent<Rat>()).ToList();
-    
+    private List<Rat> rats
+    {
+        get
+        {
+            ratGOs.RemoveAll(item => item == null);
+            return ratGOs.Select(go => go.GetComponent<Rat>()).ToList();
+        }
+    }
+
     private void Start()
     {
         // Start of game
