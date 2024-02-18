@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class PlayerScript : MonoBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
     public GameObject ToothPick;
-    public Animator ToothPickAnimation;
+    [FormerlySerializedAs("ToothPickAnimation")] public Animator ToothPickAnimator;
+    public GameObject Ball;
+    public Animator BallAnimator;
 
     [Header("Dash Settings")]
     public float DashSpeed = 10;
@@ -89,46 +92,55 @@ public class PlayerScript : MonoBehaviour
             ShootProjectile();
 
         if (Input.GetButtonDown("Fire2"))
-            MeleeWeaponUse();
+            UseMeleeWeapon();
     }
 
+    private Coroutine projectileCoroutine;
     private void ShootProjectile()
     {
-        var ray = playerCamera.ViewportPointToRay(new(0.5f, 0.5f, 0));
-        if (Physics.Raycast(ray, out var hit))
+        if (projectileCoroutine != null)
         {
-            destination = hit.point;
+            return;
         }
-        else
-        {
-            destination = ray.GetPoint(1000);
-        }
-
+        //StopCoroutine(ProjectileCoroutine());
+        ToothPickAnimator.SetBool("IsPoking", false);
+        //projectileCoroutine = null;
+        
+        projectileCoroutine = StartCoroutine(ProjectileCoroutine());
+    }
+    IEnumerator ProjectileCoroutine()
+    {
+        BallAnimator.SetBool("HideBall", true);
+        yield return new WaitForSeconds(0.2f);
         InstantiateProjectile(FPSFirePoint);
+        yield return new WaitForSeconds(1f);
+        BallAnimator.SetBool("HideBall", false);
+        yield return new WaitForSeconds(0.2f);
+        projectileCoroutine = null;
     }
     
-    private Coroutine weaponUseCoroutine;
-    public void MeleeWeaponUse()
+    private Coroutine weaponCoroutine;
+    public void UseMeleeWeapon()
     {
-        if (weaponUseCoroutine != null)
+        if (weaponCoroutine != null)
         {
-            StopCoroutine(weaponUseCoroutine);
-            ToothPickAnimation.SetBool("IsPoking", false);
-            weaponUseCoroutine = null;
+            return;
         }
+        //StopCoroutine(weaponCoroutine);
+        ToothPickAnimator.SetBool("IsPoking", false);
+        //weaponCoroutine = null;
         
-        weaponUseCoroutine = StartCoroutine(MeleeWeaponAnimCoroutine());
-
-        DoMeleeRaycast();
+        weaponCoroutine = StartCoroutine(MeleeCoroutine());
     }
-    IEnumerator MeleeWeaponAnimCoroutine()
+    IEnumerator MeleeCoroutine()
     {
-        ToothPickAnimation.SetBool("IsPoking", true);
-        yield return new WaitForSeconds(.3f);
-        ToothPickAnimation.SetBool("IsPoking", false);
-        weaponUseCoroutine = null;
+        ToothPickAnimator.SetBool("IsPoking", true);
+        yield return new WaitForSeconds(.2f);
+        DoMeleeRaycast();
+        ToothPickAnimator.SetBool("IsPoking", false);
+        yield return new WaitForSeconds(.2f);
+        weaponCoroutine = null;
     }
-
     private void DoMeleeRaycast()
     {
         var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
@@ -144,6 +156,8 @@ public class PlayerScript : MonoBehaviour
 
     private void InstantiateProjectile(Transform firePoint)
     {
+        var ray = playerCamera.ViewportPointToRay(new(0.5f, 0.5f, 0));
+        destination = Physics.Raycast(ray, out var hit) ? hit.point : ray.GetPoint(1000);
         var projectileObj = Instantiate(Projectile, firePoint.position, firePoint.rotation);
         var projectile = projectileObj.GetComponent<Projectile>();
         projectile.Rigidbody.velocity = (destination - firePoint.position).normalized * ProjectileSpeed;

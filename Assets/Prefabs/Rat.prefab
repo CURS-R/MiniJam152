@@ -1684,6 +1684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carryItemTransform: {fileID: 3541994687623268522}
   thingToDestroyWhenDead: {fileID: 8728613613596384298}
+  poofEffect: {fileID: 911753062552582646, guid: ae44fc04ff388ee49970b0aad4697b27, type: 3}
 --- !u!65 &9089217202044828142
 BoxCollider:
   m_ObjectHideFlags: 0

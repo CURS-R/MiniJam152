@@ -8,6 +8,8 @@ public class RatController : MonoBehaviour
 {
     [field: SerializeField] private Transform carryItemTransform;
     [field: SerializeField] private GameObject thingToDestroyWhenDead;
+    
+    [field: SerializeField] private GameObject poofEffect;
 
     [HideInInspector] public bool HasItem { get; private set; }
     [HideInInspector] public bool IsDying { get; private set; }
@@ -43,6 +45,7 @@ public class RatController : MonoBehaviour
             return;
         IsDying = true;
         TryDropItem();
+        var poofGO = Instantiate(poofEffect, transform.position, Quaternion.identity);
         Destroy(thingToDestroyWhenDead);
     }
 
