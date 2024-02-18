@@ -30,13 +30,8 @@ public class RatController : MonoBehaviour
     {
         var item = other.GetComponent<Item>();
         
-        if (other.CompareTag("Spray") || other.CompareTag("ToothPick"))
-        {
-            Debug.Log("Rathit");
-            TryDropItem();
-            Destroy(thingToDestroyWhenDead, 0.5f);
-            //gameObject.SetActive(false);
-        }
+        // TODO: getting hit by a spray projectile?
+        //if (other.CompareTag("Spray"))// || other.CompareTag("ToothPick"))
 
         if (item != null && !HasItem)
         {
@@ -44,6 +39,13 @@ public class RatController : MonoBehaviour
             if (!item.IsPickedUp)
                 TryPickUpItem(item);
         }
+    }
+
+    public void Die()
+    {
+        TryDropItem();
+        Destroy(thingToDestroyWhenDead, 0.5f);
+        //gameObject.SetActive(false);
     }
 
     private void TryPickUpItem(Item item)
