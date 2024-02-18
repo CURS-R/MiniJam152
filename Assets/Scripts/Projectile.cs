@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    int lifetime = 2;
-    // Start is called before the first frame update
+    [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
+    [field: SerializeField] public uint lifetime { get; private set; }
+
     void Start()
     {
         StartCoroutine(BulletLifeTime());
@@ -14,14 +15,11 @@ public class Projectile : MonoBehaviour
     IEnumerator BulletLifeTime()
     {
         yield return new WaitForSeconds(lifetime);
-        Destroy(gameObject);
+        Die();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Die()
     {
-        if (collision.gameObject.tag == "Rat")
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

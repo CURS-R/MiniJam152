@@ -8,32 +8,30 @@ public class RatController : MonoBehaviour
 {
     [field: SerializeField] private Transform carryItemTransform;
     [field: SerializeField] private GameObject thingToDestroyWhenDead;
+    
+    [field: SerializeField] private GameObject poofEffect;
 
-    [HideInInspector] public bool HasItem
-    {
-        get
-        {
-            try
-            {
-                return carryItem != null;
-            }
-            catch (Exception e)
-            {
-                return false; // I don't want to talk about this
-            }
-        }
-    }
+    [HideInInspector] public bool HasItem { get; private set; }
+    [HideInInspector] public bool IsDying { get; private set; }
 
     private Item carryItem = null;
 
     private void OnTriggerEnter(Collider other)
     {
         var item = other.GetComponent<Item>();
+        var projectile = other.GetComponent<Projectile>();
         
         // TODO: getting hit by a spray projectile?
         //if (other.CompareTag("Spray"))// || other.CompareTag("ToothPick"))
 
-        if (item != null && !HasItem)
+        if (projectile)
+        {
+            Debug.Log($"{gameObject.name} collided with Projectile");
+            projectile.Die();
+            TryDie();
+        }
+
+        if (item && !HasItem && !IsDying)
         {
             Debug.Log($"{gameObject.name} collided with Item");
             if (!item.IsPickedUp)
@@ -41,11 +39,14 @@ public class RatController : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void TryDie()
     {
+        if (IsDying)
+            return;
+        IsDying = true;
         TryDropItem();
-        Destroy(thingToDestroyWhenDead, 0.5f);
-        //gameObject.SetActive(false);
+        var poofGO = Instantiate(poofEffect, transform.position, Quaternion.identity);
+        Destroy(thingToDestroyWhenDead);
     }
 
     private void TryPickUpItem(Item item)
@@ -54,13 +55,16 @@ public class RatController : MonoBehaviour
         carryItem = item;
         carryItem.PickUp(carryItemTransform);
         Debug.Log($"{gameObject.name} TryPickup item!");
+        HasItem = true;
     }
 
     private void TryDropItem()
     {
-        if (!HasItem) return;
+        if (!HasItem || carryItem == null) return;
         carryItem.Drop();
         carryItem = null;
         Debug.Log("TryDrop item!");
+        HasItem = false;
+        IsDying = true;
     }
 }
