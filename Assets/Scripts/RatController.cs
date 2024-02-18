@@ -29,7 +29,7 @@ public class RatController : MonoBehaviour
     {
         var item = other.GetComponent<Item>();
         
-        if (other.CompareTag("Spray"))
+        if (other.CompareTag("Spray") || other.CompareTag("ToothPick"))
         {
             Debug.Log("Rathit");
             TryDropItem();

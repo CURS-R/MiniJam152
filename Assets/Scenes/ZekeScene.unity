@@ -712,19 +712,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1947219582}
+    m_TransformParent: {fileID: 2063722737}
     m_Modifications:
     - target: {fileID: 2100700028279475007, guid: cccce841402240341957f05c794924e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4405124
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 2100700028279475007, guid: cccce841402240341957f05c794924e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.11
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 2100700028279475007, guid: cccce841402240341957f05c794924e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2100700028279475007, guid: cccce841402240341957f05c794924e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -756,6 +756,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9001917916007347773, guid: cccce841402240341957f05c794924e0, type: 3}
       propertyPath: m_Name
+      value: ToothPick
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001917916007347773, guid: cccce841402240341957f05c794924e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001917916007347773, guid: cccce841402240341957f05c794924e0, type: 3}
+      propertyPath: m_TagString
       value: ToothPick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1135,6 +1143,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8013944403051678321, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
   m_PrefabInstance: {fileID: 2252980332609448255}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2063722737 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5386649857062818090, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
+  m_PrefabInstance: {fileID: 2252980332609448255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2117096160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1251,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2540216404086064671, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
+      propertyPath: ToothPick
+      value: 
+      objectReference: {fileID: 1404907031}
+    - target: {fileID: 2540216404086064671, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
       propertyPath: Projectile
       value: 
       objectReference: {fileID: 1426035579391187447, guid: 1fda45a012220364d83304cca618e07d, type: 3}
@@ -1298,13 +1315,13 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8013944403051678321, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
       insertIndex: 0
-      addedObject: {fileID: 1404907030}
-    - targetCorrespondingSourceObject: {fileID: 8013944403051678321, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
-      insertIndex: 1
       addedObject: {fileID: 642762412}
     - targetCorrespondingSourceObject: {fileID: 8013944403051678321, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1934819418}
+    - targetCorrespondingSourceObject: {fileID: 5386649857062818090, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1404907030}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
 --- !u!1660057539 &9223372036854775807

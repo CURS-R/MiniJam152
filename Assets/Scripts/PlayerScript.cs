@@ -12,6 +12,8 @@ public class PlayerScript : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public GameObject ToothPick;
+    public Animator ToothPickAnimation;
 
     [Header("Dash Settings")]
     public float DashSpeed = 10;
@@ -91,14 +93,17 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (MeleeWeapon == true)
-            {
-                MeleeWeaponUse();
-            }
-            else
-            {
-            ShootProjectile();
-            }
+                ShootProjectile();
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            MeleeWeaponUse();
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            ToothPickAnimation.SetBool("IsPoking", false);
         }
     }
 
@@ -121,7 +126,14 @@ public class PlayerScript : MonoBehaviour
 
     public void MeleeWeaponUse()
     {
+        ToothPick.SetActive(true);
+        ToothPickAnimation.SetBool("IsPoking", true);
+    }
 
+    IEnumerator SetANimtoFalse()
+    {
+        yield return new WaitForSeconds(2);
+        ToothPickAnimation.SetBool("IsPoking", false);
     }
 
     void InstantiateProjectile(Transform firePoint)
