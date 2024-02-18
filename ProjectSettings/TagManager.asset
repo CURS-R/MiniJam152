@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spray
   - Rat
+  - ToothPick
   layers:
   - Default
   - TransparentFX
