@@ -10,6 +10,7 @@ public class RatController : MonoBehaviour
     [field: SerializeField] private GameObject thingToDestroyWhenDead;
 
     [HideInInspector] public bool HasItem { get; private set; }
+    [HideInInspector] public bool IsDying { get; private set; }
 
     private Item carryItem = null;
 
@@ -25,10 +26,10 @@ public class RatController : MonoBehaviour
         {
             Debug.Log($"{gameObject.name} collided with Projectile");
             projectile.Die();
-            Die();
+            TryDie();
         }
 
-        if (item && !HasItem)
+        if (item && !HasItem && !IsDying)
         {
             Debug.Log($"{gameObject.name} collided with Item");
             if (!item.IsPickedUp)
@@ -36,11 +37,13 @@ public class RatController : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void TryDie()
     {
+        if (IsDying)
+            return;
+        IsDying = true;
         TryDropItem();
-        Destroy(thingToDestroyWhenDead, 0.5f);
-        //gameObject.SetActive(false);
+        Destroy(thingToDestroyWhenDead);
     }
 
     private void TryPickUpItem(Item item)
@@ -54,10 +57,11 @@ public class RatController : MonoBehaviour
 
     private void TryDropItem()
     {
-        if (!HasItem) return;
+        if (!HasItem || carryItem == null) return;
         carryItem.Drop();
         carryItem = null;
         Debug.Log("TryDrop item!");
         HasItem = false;
+        IsDying = true;
     }
 }

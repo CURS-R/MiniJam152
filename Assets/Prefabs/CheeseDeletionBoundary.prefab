@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2273128690792854238}
   - component: {fileID: 8756740686399839560}
   m_Layer: 0
-  m_Name: DeletionBoundary
+  m_Name: CheeseDeletionBoundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -311,6 +311,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4757864262341280623, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b9fb7a578bae86a44a83dde14673ee46, type: 2}
     - target: {fileID: 7478178318777363772, guid: ed2aaa61619dab447aadb7d68937d47e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -572,10 +576,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBoundary
       objectReference: {fileID: 0}
-    - target: {fileID: 412113645717138944, guid: 3be3c12fcf9f9a34c8c41edfcbaf6646, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3998873728823603844, guid: 3be3c12fcf9f9a34c8c41edfcbaf6646, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -736,11 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8193422182917285159, guid: adf79294d9d291044bf5b4ead76aec1a, type: 3}
       propertyPath: m_Name
-      value: DeletionBoundary
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193422182917285159, guid: adf79294d9d291044bf5b4ead76aec1a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: CheeseDeletionBoundary
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

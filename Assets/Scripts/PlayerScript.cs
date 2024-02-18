@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
             var rat = hit.collider.GetComponent<Rat>();
             if (rat != null)
             {
-                rat.Controller.Die();
+                rat.Controller.TryDie();
             }
         }
     }
