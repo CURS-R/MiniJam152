@@ -127,6 +127,16 @@ public class PlayerScript : MonoBehaviour
         }
         ToothPickAnimation.SetBool("IsPoking", true);
         weaponUseCoroutine = StartCoroutine(SetAnimtoFalse());
+
+        var ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        if (Physics.Raycast(ray, out var hit, 4f))
+        {
+            var rat = hit.collider.GetComponent<Rat>();
+            if (rat != null)
+            {
+                rat.Controller.Die();
+            }
+        }
     }
     IEnumerator SetAnimtoFalse()
     {
