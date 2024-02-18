@@ -53,8 +53,8 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         //Grounded and reacalculating move direction based axes
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        Vector3 forward = characterController.transform.TransformDirection(Vector3.forward);
+        Vector3 right = characterController.transform.TransformDirection(Vector3.right);
         //Press Left shift to sprint
         bool isDashing = false;
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
@@ -82,10 +82,12 @@ public class PlayerScript : MonoBehaviour
         // Player and Camera rotation
         if (canMove)
         {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            var calculatedLookSpeed = lookSpeed * 300 * Time.deltaTime;
+            rotationX += -Input.GetAxis("Mouse Y") * calculatedLookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, playerCamera.transform.localRotation.y, playerCamera.transform.localRotation.z);
+            characterController.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * calculatedLookSpeed, 0);
+            //playerCamera.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
 
         if (Input.GetButtonDown("Fire1"))
