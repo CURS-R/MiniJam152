@@ -1617,8 +1617,8 @@ GameObject:
   - component: {fileID: 3213935883952707485}
   - component: {fileID: 8003166296622746416}
   - component: {fileID: 4066140526359188960}
-  - component: {fileID: 9089217202044828142}
   - component: {fileID: 4797391435386575458}
+  - component: {fileID: 9089217202044828142}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Untagged
@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553c94b71bc0984459361b02542c0a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Controller>k__BackingField: {fileID: 0}
+  <Controller>k__BackingField: {fileID: 4797391435386575458}
   <Movement>k__BackingField: {fileID: 4066140526359188960}
 --- !u!114 &4066140526359188960
 MonoBehaviour:
@@ -1670,6 +1670,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c25bb89b1304db886abf914bd41f903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4797391435386575458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8728613613596384298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df35a757029159478c11b97b6c473e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carryItemTransform: {fileID: 3541994687623268522}
+  thingToDestroyWhenDead: {fileID: 8728613613596384298}
 --- !u!65 &9089217202044828142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1691,20 +1705,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.2904222, z: 2.9311676}
   m_Center: {x: 0.0000013741557, y: 0.66219294, z: 0.1654265}
---- !u!114 &4797391435386575458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8728613613596384298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df35a757029159478c11b97b6c473e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carryItemTransform: {fileID: 3541994687623268522}
-  thingToDestroyWhenDead: {fileID: 8728613613596384298}
 --- !u!1 &8930075791750570150
 GameObject:
   m_ObjectHideFlags: 0

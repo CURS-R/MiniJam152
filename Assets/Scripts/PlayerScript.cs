@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public CharacterController characterController;
+    
     [Header("Player Variables")]
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
@@ -26,13 +28,11 @@ public class PlayerScript : MonoBehaviour
     public Transform FPSFirePoint;
     public float ProjectileSpeed = 30.0f;
 
-    CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
 
     public ParticleSystem SprayParticle;
 
     float rotationX = 0;
-
 
     [HideInInspector]
     public bool canMove = true;
@@ -40,8 +40,6 @@ public class PlayerScript : MonoBehaviour
     public bool MeleeWeapon = false;
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
-
         //lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
@@ -93,17 +91,12 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-                ShootProjectile();
+            ShootProjectile();
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
             MeleeWeaponUse();
-        }
-
-        if (Input.GetButtonUp("Fire2"))
-        {
-            ToothPickAnimation.SetBool("IsPoking", false);
         }
     }
 
@@ -121,19 +114,25 @@ public class PlayerScript : MonoBehaviour
         }
 
         InstantiateProjectile(FPSFirePoint);
-
     }
-
+    
+    private Coroutine weaponUseCoroutine;
     public void MeleeWeaponUse()
     {
-        ToothPick.SetActive(true);
+        if (weaponUseCoroutine != null)
+        {
+            StopCoroutine(weaponUseCoroutine);
+            ToothPickAnimation.SetBool("IsPoking", false);
+            weaponUseCoroutine = null;
+        }
         ToothPickAnimation.SetBool("IsPoking", true);
+        weaponUseCoroutine = StartCoroutine(SetAnimtoFalse());
     }
-
-    IEnumerator SetANimtoFalse()
+    IEnumerator SetAnimtoFalse()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(.3f);
         ToothPickAnimation.SetBool("IsPoking", false);
+        weaponUseCoroutine = null;
     }
 
     void InstantiateProjectile(Transform firePoint)
