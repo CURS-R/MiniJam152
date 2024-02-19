@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public float minimumDelay = 0.5f;
 
     private readonly List<GameObject> cheeseGOs = new();
-    private List<Cheese> cheeses
+    public List<Cheese> Cheeses
     {
         get
         {
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     }
     private void GoToCheese(Rat rat)
     {
-        var validCheeses = cheeses.Where(c => !c.IsPickedUp).ToList();
+        var validCheeses = Cheeses.Where(c => !c.IsPickedUp).ToList();
         Vector3 targetPos;
         if (validCheeses.Count > 0)
             targetPos = validCheeses[Random.Range(0, validCheeses.Count)].transform.position;

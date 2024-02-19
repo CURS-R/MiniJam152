@@ -10,4 +10,9 @@ public class AudioManager : MonoBehaviour
     [Header("Weapons")]
     [SerializeField] private AudioSource _ballSound;
     [SerializeField] private AudioSource _toothPickImpact;
+
+    public void BallSound()
+    {
+        _ballSound.Play();
+    }
 }
