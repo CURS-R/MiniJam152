@@ -39,7 +39,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.P)) 
             TogglePauseMenu();
         if (toggled)
         {
@@ -48,7 +48,7 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    private void TogglePauseMenu()
+    public void TogglePauseMenu()
     {
         Time.timeScale = toggled ? 0 : 1;
         Cursor.lockState = toggled ? CursorLockMode.None : CursorLockMode.Locked;
@@ -72,6 +72,11 @@ public class SettingsManager : MonoBehaviour
             return;
         
         PlayerConfiguration.CameraSensitivity = sensitivitySlider.value;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
     public void TestAudio()
