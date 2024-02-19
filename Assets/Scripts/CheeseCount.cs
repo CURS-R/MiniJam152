@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CheeseCount : MonoBehaviour
 {
-    [SerializeField] TextMeshPro TextCheeseUI;
+    [SerializeField] TextMeshProUGUI TextCheeseUI;
     GameManager gamManegerRef;
 
     private int cheeseCount;
