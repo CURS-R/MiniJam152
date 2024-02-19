@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
     [field: SerializeField] public uint lifetime { get; private set; }
+    AudioManager audioManager;
 
     void Start()
     {
@@ -21,5 +22,6 @@ public class Projectile : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        audioManager.BallSound();
     }
 }
