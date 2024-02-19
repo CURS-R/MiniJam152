@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class TransformAnchorUtil : MonoBehaviour
+namespace Utils
 {
+    public class TransformAnchorUtil : MonoBehaviour
+    {
         public Transform childTransform;
         public Transform parentTransform;
         [SerializeField] private Vector3 offset;
@@ -62,4 +64,7 @@ public class TransformAnchorUtil : MonoBehaviour
             }
         }
         #endregion
+    }
 }
+
+

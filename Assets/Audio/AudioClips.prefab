@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1093523863623308583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3508483123859176464}
+  - component: {fileID: 1333466579097244819}
+  m_Layer: 0
+  m_Name: AudioClips
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3508483123859176464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093523863623308583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1333466579097244819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093523863623308583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587a566b2f8448f1ae1bc92cf365e018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <RatDeathReverbPreset>k__BackingField: 26
+  ratDeathSounds:
+  - {fileID: 8300000, guid: f7313674dbe415e4c968897e8662b43d, type: 3}
+  - {fileID: 8300000, guid: 6a4dfb85060467d45added5b38833585, type: 3}
+  - {fileID: 8300000, guid: 129c5aad15bae3443a91fc15b36598c4, type: 3}
+  - {fileID: 8300000, guid: 6c7401f1d7aa72f4485ab48872153a9c, type: 3}
+  - {fileID: 8300000, guid: a60c0033b9319454586413e667005da2, type: 3}
+  - {fileID: 8300000, guid: 846d8b59c19f9804188a1fca93df1598, type: 3}
+  - {fileID: 8300000, guid: 2ac0cdc768726694c95ee543711b12be, type: 3}
+  - {fileID: 8300000, guid: 2b3fa069161470c428947a1874fe5b68, type: 3}
+  - {fileID: 8300000, guid: 39c137e223c8c4c4492bf319bbf9987b, type: 3}
+  - {fileID: 8300000, guid: 0666629da755b674a898b5466d8070fc, type: 3}
+  - {fileID: 8300000, guid: ee222077c65565248ad209064e782249, type: 3}
+  - {fileID: 8300000, guid: bef832456285dbc46b0f503990db8af4, type: 3}
+  - {fileID: 8300000, guid: 16e3791bf362f774c8a0fa81da246060, type: 3}
+  <CheesePickupReverbPreset>k__BackingField: 9
+  cheesePickupSounds:
+  - {fileID: 8300000, guid: f7313674dbe415e4c968897e8662b43d, type: 3}
+  - {fileID: 8300000, guid: 6a4dfb85060467d45added5b38833585, type: 3}
+  - {fileID: 8300000, guid: 129c5aad15bae3443a91fc15b36598c4, type: 3}
+  - {fileID: 8300000, guid: 6c7401f1d7aa72f4485ab48872153a9c, type: 3}
+  - {fileID: 8300000, guid: a60c0033b9319454586413e667005da2, type: 3}
+  - {fileID: 8300000, guid: 846d8b59c19f9804188a1fca93df1598, type: 3}
+  - {fileID: 8300000, guid: 2ac0cdc768726694c95ee543711b12be, type: 3}
+  - {fileID: 8300000, guid: 2b3fa069161470c428947a1874fe5b68, type: 3}
+  - {fileID: 8300000, guid: 39c137e223c8c4c4492bf319bbf9987b, type: 3}
+  - {fileID: 8300000, guid: 0666629da755b674a898b5466d8070fc, type: 3}
+  - {fileID: 8300000, guid: ee222077c65565248ad209064e782249, type: 3}
+  - {fileID: 8300000, guid: bef832456285dbc46b0f503990db8af4, type: 3}
+  - {fileID: 8300000, guid: 16e3791bf362f774c8a0fa81da246060, type: 3}
+  <BallThrowReverbPreset>k__BackingField: 0
+  ballThrowSounds:
+  - {fileID: 8300000, guid: c75e7661c0438284aa5602208fed7f34, type: 3}
+  <ToothpickStabReverbPreset>k__BackingField: 21
+  toothpickStabSounds:
+  - {fileID: 8300000, guid: 5f651d5fba8a58b488600e42c142105a, type: 3}
+  - {fileID: 8300000, guid: 7d7768e2a45c8464a997ee6e952cd457, type: 3}
+  - {fileID: 8300000, guid: bf4b71c6e7bba9d4291b42f33c4cba23, type: 3}
+  - {fileID: 8300000, guid: 0f7fd91d365f7d14abab258c2ebc9c68, type: 3}
+  - {fileID: 8300000, guid: ea7e19ce9b4ae78489829fa77f9b63f5, type: 3}
+  <PlayerJumpReverbPreset>k__BackingField: 22
+  playerJumpSounds:
+  - {fileID: 8300000, guid: a80891a670d26144ea358ee25452f18e, type: 3}
+  - {fileID: 8300000, guid: d37963f2b9ba5ab4cacedc3325fba65d, type: 3}
+  - {fileID: 8300000, guid: 8ab1abce14bf7774d94d2a3697beaf43, type: 3}
+  - {fileID: 8300000, guid: 9affbdcc1ac17f54d81a66a8e4eef158, type: 3}
+  - {fileID: 8300000, guid: 7e7272c84492a0640ac274f11da3f461, type: 3}
+  <GameLoseReverbPreset>k__BackingField: 0
+  gameLoseSounds:
+  - {fileID: 8300000, guid: 7a77b7b11dc808544936c513916a8418, type: 3}
+  <GameWinReverbPreset>k__BackingField: 0
+  gameWinSounds:
+  - {fileID: 8300000, guid: 935a07b3f6b7f8f43a939680e04be21e, type: 3}
