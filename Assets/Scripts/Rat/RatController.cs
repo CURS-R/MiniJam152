@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Base;
 using UnityEngine;
 
@@ -46,6 +47,7 @@ public class RatController : MonoBehaviour
         IsDying = true;
         TryDropItem();
         var poofGO = Instantiate(poofEffect, transform.position, Quaternion.identity);
+        AudioManager.Instance.PlayASound(AudioClips.Instance.RatDeath, transform.position);
         Destroy(thingToDestroyWhenDead);
     }
 
@@ -54,6 +56,7 @@ public class RatController : MonoBehaviour
         if (HasItem) return;
         carryItem = item;
         carryItem.PickUp(carryItemTransform);
+        AudioManager.Instance.PlayASound(AudioClips.Instance.CheesePickup, transform.position);
         Debug.Log($"{gameObject.name} TryPickup item!");
         HasItem = true;
     }

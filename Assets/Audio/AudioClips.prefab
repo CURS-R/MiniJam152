@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587a566b2f8448f1ae1bc92cf365e018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <RatDeathReverbPreset>k__BackingField: 26
   ratDeathSounds:
   - {fileID: 8300000, guid: f7313674dbe415e4c968897e8662b43d, type: 3}
   - {fileID: 8300000, guid: 6a4dfb85060467d45added5b38833585, type: 3}
@@ -58,6 +59,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ee222077c65565248ad209064e782249, type: 3}
   - {fileID: 8300000, guid: bef832456285dbc46b0f503990db8af4, type: 3}
   - {fileID: 8300000, guid: 16e3791bf362f774c8a0fa81da246060, type: 3}
+  <CheesePickupReverbPreset>k__BackingField: 9
   cheesePickupSounds:
   - {fileID: 8300000, guid: f7313674dbe415e4c968897e8662b43d, type: 3}
   - {fileID: 8300000, guid: 6a4dfb85060467d45added5b38833585, type: 3}
@@ -72,15 +74,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ee222077c65565248ad209064e782249, type: 3}
   - {fileID: 8300000, guid: bef832456285dbc46b0f503990db8af4, type: 3}
   - {fileID: 8300000, guid: 16e3791bf362f774c8a0fa81da246060, type: 3}
-  ballThrowSounds: []
-  toothpickStabSounds: []
+  <BallThrowReverbPreset>k__BackingField: 0
+  ballThrowSounds:
+  - {fileID: 8300000, guid: c75e7661c0438284aa5602208fed7f34, type: 3}
+  <ToothpickStabReverbPreset>k__BackingField: 21
+  toothpickStabSounds:
+  - {fileID: 8300000, guid: 5f651d5fba8a58b488600e42c142105a, type: 3}
+  - {fileID: 8300000, guid: 7d7768e2a45c8464a997ee6e952cd457, type: 3}
+  - {fileID: 8300000, guid: bf4b71c6e7bba9d4291b42f33c4cba23, type: 3}
+  - {fileID: 8300000, guid: 0f7fd91d365f7d14abab258c2ebc9c68, type: 3}
+  - {fileID: 8300000, guid: ea7e19ce9b4ae78489829fa77f9b63f5, type: 3}
+  <PlayerJumpReverbPreset>k__BackingField: 22
   playerJumpSounds:
   - {fileID: 8300000, guid: a80891a670d26144ea358ee25452f18e, type: 3}
   - {fileID: 8300000, guid: d37963f2b9ba5ab4cacedc3325fba65d, type: 3}
   - {fileID: 8300000, guid: 8ab1abce14bf7774d94d2a3697beaf43, type: 3}
   - {fileID: 8300000, guid: 9affbdcc1ac17f54d81a66a8e4eef158, type: 3}
   - {fileID: 8300000, guid: 7e7272c84492a0640ac274f11da3f461, type: 3}
+  <GameLoseReverbPreset>k__BackingField: 0
   gameLoseSounds:
   - {fileID: 8300000, guid: 7a77b7b11dc808544936c513916a8418, type: 3}
+  <GameWinReverbPreset>k__BackingField: 0
   gameWinSounds:
   - {fileID: 8300000, guid: 935a07b3f6b7f8f43a939680e04be21e, type: 3}

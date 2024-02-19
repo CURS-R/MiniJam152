@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,11 +14,9 @@ public class PlayerScript : MonoBehaviour
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
     public Camera playerCamera;
-    public float lookSpeed = 2.0f;
+    public float lookSpeed => PlayerConfiguration.CameraSensitivity;
     public float lookXLimit = 45.0f;
-    public GameObject ToothPick;
     [FormerlySerializedAs("ToothPickAnimation")] public Animator ToothPickAnimator;
-    public GameObject Ball;
     public Animator BallAnimator;
 
     [Header("Dash Settings")]
@@ -64,7 +63,10 @@ public class PlayerScript : MonoBehaviour
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        {
+            AudioManager.Instance.PlayASound(AudioClips.Instance.ToothpickStab, transform.position);
             moveDirection.y = jumpSpeed;
+        }
         else
             moveDirection.y = movementDirectionY;
 
@@ -82,7 +84,7 @@ public class PlayerScript : MonoBehaviour
         // Player and Camera rotation
         if (canMove)
         {
-            var calculatedLookSpeed = lookSpeed * 300 * Time.deltaTime;
+            var calculatedLookSpeed = lookSpeed * 100 * Time.deltaTime;
             rotationX += -Input.GetAxis("Mouse Y") * calculatedLookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, playerCamera.transform.localRotation.y, playerCamera.transform.localRotation.z);
@@ -139,6 +141,7 @@ public class PlayerScript : MonoBehaviour
         ToothPickAnimator.SetBool("IsPoking", true);
         yield return new WaitForSeconds(.2f);
         DoMeleeRaycast();
+        AudioManager.Instance.PlayASound(AudioClips.Instance.ToothpickStab, transform.position);
         ToothPickAnimator.SetBool("IsPoking", false);
         yield return new WaitForSeconds(.2f);
         weaponCoroutine = null;
@@ -164,6 +167,7 @@ public class PlayerScript : MonoBehaviour
         var projectile = projectileObj.GetComponent<Projectile>();
         projectile.Rigidbody.velocity = (destination - firePoint.position).normalized * ProjectileSpeed;
         //SprayParticle.Play(); // TODO: spray?
+        AudioManager.Instance.PlayASound(AudioClips.Instance.BallThrow, characterController.transform.position);
     }
 }
 

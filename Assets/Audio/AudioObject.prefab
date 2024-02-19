@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioSource: {fileID: 2233817848700295207}
+  AudioReverbFilter: {fileID: 7570151411253839756}
 --- !u!1 &6897948593264060624
 GameObject:
   m_ObjectHideFlags: 0
